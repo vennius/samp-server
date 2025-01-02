@@ -1,0 +1,57 @@
+forward UpdateTimeTextdraw(playerid);
+public UpdateTimeTextdraw(playerid){
+  new hours,
+    minutes,
+    timestamp,
+    seconds;
+  timestamp = gettime(hours, minutes, seconds);
+  new time[100];
+  format(time, sizeof(time), "Jam Sekarang: %02d:%02d", hours, minutes);
+  TextDrawSetString(TD_Time[playerid][0], time);
+  return 1;
+}
+
+stock SavepData(playerid)
+{
+    if(pData[playerid][pLoggedIn] == false) return 0;
+
+    // Player skin
+    pData[playerid][pSkin] = GetPlayerSkin(playerid);
+
+    // Player score
+    pData[playerid][pScore] = GetPlayerScore(playerid);
+
+    // Pos and Angle
+    GetPlayerPos(playerid, pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z]);
+    GetPlayerFacingAngle(playerid, pData[playerid][player_pos_angle]);
+
+    // Let's save the player data.
+    new szQuery[4028];
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "UPDATE `players` SET ");
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`Skin` = %i,", szQuery, pData[playerid][pSkin]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`Score` = %i,", szQuery, pData[playerid][pScore]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`Kills` = %i,", szQuery, pData[playerid][pKills]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`Deaths` = %i,", szQuery, pData[playerid][pDeaths]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`x_pos` = %f,", szQuery, pData[playerid][player_pos_x]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`y_pos` = %f,", szQuery, pData[playerid][player_pos_y]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`z_pos` = %f,", szQuery, pData[playerid][player_pos_z]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`angle_pos` = %f,", szQuery, pData[playerid][player_pos_angle]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`admin` = %i ", szQuery, pData[playerid][pAdmin]);
+
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%sWHERE `ID` = %i", szQuery, pData[playerid][pAccountID]);
+    
+    mysql_tquery(dbHandle, szQuery);
+
+    return 1;
+}
+
+DelayedKick(playerid, const reason[])
+{
+    SendClientMessage(playerid, 0xFF0000, "You have been kicked out of the server. Reason: %s.", reason);
+
+    TogglePlayerSpectating(playerid, true);
+
+    SetTimerEx("TIMER_DelayedKick", 2000, false, "i", playerid);
+
+    return 1;
+}

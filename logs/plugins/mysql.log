@@ -1,0 +1,128 @@
+[31/12/2024 12:57:44] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on 'localhost' (10061)'
+[31/12/2024 12:57:48] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on 'localhost' (10061)'
+[31/12/2024 12:57:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on 'localhost' (10061)'
+[31/12/2024 12:57:56] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on 'localhost' (10061)'
+[31/12/2024 12:58:39] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on 'localhost' (10061)'
+[31/12/2024 12:58:43] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on 'localhost' (10061)'
+[31/12/2024 12:58:47] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on 'localhost' (10061)'
+[31/12/2024 12:58:51] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on 'localhost' (10061)'
+[31/12/2024 13:00:01] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:00:01] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:00:01] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:00:01] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:00:37] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:00:37] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:00:37] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:00:37] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:09:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:09:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:09:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:09:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:10:55] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:10:55] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:10:55] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:10:55] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:10:58] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:10:58] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:10:58] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:10:58] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #1045 'Access denied for user 'root'@'localhost' (using password: YES)'
+[31/12/2024 13:12:08] [WARNING] mysql_connect: no password specified
+[31/12/2024 13:52:52] [WARNING] mysql_connect: no password specified
+[31/12/2024 13:58:55] [ERROR] error #1064 while executing query "UPDATE `players` SET `Skin` = 188,      `Score` = 0,     `Kills` = 0,     `Deaths` = 0,    `x_pos` = 1660.689697,     `y_pos` = -2261.865967,     `z_pos` = 13.516831,     `angle_pos` = 259.381470  `weapon` = 2     WHERE `ID` = 22": You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`weapon` = 2     WHERE `ID` = 22' at line 1
+[31/12/2024 14:00:33] [ERROR] error #1064 while executing query "UPDATE `players` SET `Skin` = 188,      `Score` = 0,     `Kills` = 0,     `Deaths` = 0,    `x_pos` = 1643.719971,     `y_pos` = -2245.290039,     `z_pos` = 13.491112,     `angle_pos` = 187.199982  `weapon` = 3     WHERE `ID` = 22": You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '`weapon` = 3     WHERE `ID` = 22' at line 1
+[31/12/2024 14:02:24] [WARNING] mysql_connect: no password specified
+[01/01/2025 12:10:23] [WARNING] mysql_connect: no password specified
+[01/01/2025 12:10:25] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 12:10:27] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 12:10:29] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 12:10:31] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 12:11:24] [WARNING] mysql_connect: no password specified
+[01/01/2025 15:38:19] [WARNING] mysql_connect: no password specified
+[01/01/2025 15:38:21] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 15:38:23] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 15:38:25] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 15:38:27] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 15:39:21] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:19:07] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:22:01] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:45:33] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:47:34] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:49:12] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:49:55] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:53:06] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:55:03] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:55:49] [WARNING] mysql_connect: no password specified
+[01/01/2025 16:57:43] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:16:50] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:16:52] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 19:16:54] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 19:16:56] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 19:16:58] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 19:17:56] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:17:58] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 19:18:00] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 19:18:02] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 19:18:04] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[01/01/2025 19:18:37] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:20:11] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:39:40] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:40:16] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[01/01/2025 19:40:16] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[01/01/2025 19:40:16] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[01/01/2025 19:40:16] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[01/01/2025 19:40:16] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 19:40:16] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 19:40:16] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 19:40:16] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 19:41:18] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:45:33] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:48:51] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:56:56] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:57:13] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:58:42] [WARNING] mysql_connect: no password specified
+[01/01/2025 19:59:46] [WARNING] mysql_connect: no password specified
+[01/01/2025 20:01:18] [WARNING] mysql_connect: no password specified
+[01/01/2025 20:02:25] [WARNING] mysql_connect: no password specified
+[01/01/2025 20:26:12] [WARNING] mysql_connect: no password specified
+[01/01/2025 20:45:37] [WARNING] mysql_connect: no password specified
+[01/01/2025 20:55:58] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 20:56:11] [WARNING] mysql_connect: no password specified
+[01/01/2025 20:56:45] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 20:56:59] [ERROR] error #1064 while executing query "WHERE `ID` = 4": You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE `ID` = 4' at line 1
+[01/01/2025 20:57:23] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:06:01] [WARNING] mysql_connect: no password specified
+[01/01/2025 21:06:46] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:07:22] [ERROR] error #1054 while executing query "UPDATE `players` SET `Skin` = 188,`Score` = 0,`Kills` = 0,`Deaths` = 0,`x_pos` = 1154877709,`y_pos` = -988970108,`z_pos` = 1097327309,`amgle_pos` = 1119317887 WHERE `ID` = 4": Unknown column 'amgle_pos' in 'field list'
+[01/01/2025 21:07:46] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:09:40] [WARNING] mysql_connect: no password specified
+[01/01/2025 21:10:14] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:10:56] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:11:55] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:14:14] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:15:41] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:16:37] [WARNING] mysql_connect: no password specified
+[01/01/2025 21:18:05] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:18:51] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[01/01/2025 21:20:17] [WARNING] mysql_connect: no password specified
+[01/01/2025 21:20:44] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[02/01/2025 12:17:12] [WARNING] mysql_connect: no password specified
+[02/01/2025 12:17:14] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 12:17:16] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 12:17:19] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 12:17:21] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 12:17:41] [WARNING] mysql_connect: no password specified
+[02/01/2025 12:17:59] [WARNING] mysql_connect: no password specified
+[02/01/2025 13:04:59] [WARNING] mysql_connect: no password specified
+[02/01/2025 13:25:39] [WARNING] mysql_connect: no password specified
+[02/01/2025 13:26:08] [WARNING] mysql_connect: no password specified
+[02/01/2025 13:26:24] [WARNING] mysql_connect: no password specified
+[02/01/2025 13:45:24] [WARNING] mysql_connect: no password specified
+[02/01/2025 14:02:49] [WARNING] mysql_connect: no password specified
+[02/01/2025 14:04:59] [WARNING] mysql_connect: no password specified
+[02/01/2025 15:29:17] [WARNING] mysql_connect: no password specified
+[02/01/2025 15:47:19] [WARNING] mysql_connect: no password specified
+[02/01/2025 15:47:21] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 15:47:23] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 15:47:25] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 15:47:27] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 15:48:37] [WARNING] mysql_connect: no password specified

@@ -1,0 +1,19 @@
+enum 
+{
+    // IDs are automatically given.
+    DIALOG_UNUSED,
+
+    DIALOG_REGISTER,
+
+    DIALOG_LOGIN,
+    DIALOG_STATS
+};
+
+enum ADMIN_RANK {
+    ADMIN_VOLUNTEER = 1,
+    ADMIN_HELPER,
+    ADMIN_STAFF,
+    ADMIN_ADMINISTRATOR,
+    ADMIN_MANAGEMENT,
+    ADMIN_DEVELOPER
+}
