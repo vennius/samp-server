@@ -14,21 +14,22 @@
 
 */
 
+// REMINDER: Fix Hunger System
 
 // We are going to define MAX_PLAYERS before including open.mp so we don't have to undef it.
 // Change the value to the "Slots" you want.
 #define MAX_PLAYERS     28
 
 #include <open.mp>
-
-
-// MySQL Plugin latest version (R41-4) https://github.com/pBlueG/SA-MP-MySQL/releases/tag/R41-4
 #include <a_mysql>  
-
-// Bcrypt for password hashing https://github.com/Sreyas-Sreelal/samp-bcrypt/releases/tag/0.4.0
 #include <samp_bcrypt>
-
 #include <Pawn.CMD>
+#include <sscanf2>
+#include <progress2>
+#include <YSI_Core/y_compilerdata>
+#include <YSI_Game/y_vehicledata>
+#include <YSI_Core/y_utils>
+#include <YSI_Coding/y_timers>
 
 #pragma warning disable 213, 234, 204, 217
 
@@ -40,13 +41,11 @@ main() {}
 forward OnPlayerAccountCheck(playerid);
 forward OnPlayerHashPassword(playerid);
 forward OnPlayerVerifyPassword(playerid, bool:success);
-forward OnPlayerAccountLoad(playerid);
 forward OnPlayerFinishRegistration(playerid);
 forward TIMER_DelayedKick(playerid);
 
 // This is going to be our MYSQL connection handle.
 new MySQL:dbHandle;
-
 
 // PLAYER DATA
 enum E_PLAYER_DATA
@@ -56,16 +55,17 @@ enum E_PLAYER_DATA
     PasswordHash[BCRYPT_HASH_LENGTH],
     pBadLogins,
     bool:pLoggedIn,
+    bool:pSpawned,
     pSkin,
     pScore,
-    pKills,
-    pDeaths,
     Float:player_pos_x,
     Float:player_pos_y,
     Float:player_pos_z,
     Float:player_pos_angle,
     pAdmin,
-    pMoney
+    pMoney,
+    pHunger,
+    pThirst
 };
 new pData[MAX_PLAYERS][E_PLAYER_DATA];
 
@@ -78,8 +78,10 @@ new pData[MAX_PLAYERS][E_PLAYER_DATA];
 
 #include "MODULE/NATIVE"
 #include "MODULE/FUNCTION"
+#include "MODULE/TASK"
 
 #include "COMMANDS/PLAYER"
+#include "COMMANDS/ADMIN"
 
 public OnGameModeInit()
 {
@@ -120,6 +122,7 @@ public OnGameModeExit()
 
 public OnPlayerConnect(playerid)
 {
+    pData[playerid][pSpawned] = false;
     // Player name
     GetPlayerName(playerid, pData[playerid][pName]);
 
@@ -141,16 +144,20 @@ public OnPlayerDisconnect(playerid, reason)
 {
     // It is not possible to get the player's last position in OnPlayerDisconnect if the client crashed.
     // Now, we're gonna get the player's pos and angle before we save the player data.
-    if(reason == 1)
-    {
-        GetPlayerPos(playerid, pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z]);
-        GetPlayerFacingAngle(playerid, pData[playerid][player_pos_angle]);
-    }
+    // if(reason == 1)
+    // {
+    //     GetPlayerPos(playerid, pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z]);
+    //     GetPlayerFacingAngle(playerid, pData[playerid][player_pos_angle]);
+    // }
+
+    GetPlayerPos(playerid, pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z]);
+    GetPlayerFacingAngle(playerid, pData[playerid][player_pos_angle]);
 
     pData[playerid][pBadLogins] = 0;
 
     // Save the player data.
     SavepData(playerid);
+    DestroyHBE(playerid);
 
     return 1;
 }
@@ -160,7 +167,7 @@ public OnPlayerAccountCheck(playerid)
     if(cache_num_rows() > 0)
     {
         // An account exists with that name.
-        cache_get_value(0, "Hash", pData[playerid][PasswordHash]);
+        cache_get_value(0, "hash", pData[playerid][PasswordHash]);
 
         ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Log in", "This account (%s) is registered. Please enter your password in the field below:", "Login", "Cancel", pData[playerid][pName]);
     }
@@ -188,7 +195,14 @@ public OnPlayerHashPassword(playerid)
 RegisterAccountForPlayer(playerid, const hash [])
 {
     new szQuery[256];
-    mysql_format(dbHandle, szQuery, sizeof (szQuery), "INSERT INTO `players` (`Name`, `Hash`) VALUES ('%e', '%s')", pData[playerid][pName], hash);
+    pData[playerid][pSkin]             = DEFAULT_SKIN;
+    pData[playerid][player_pos_x]      = DEFAULT_POS_X;
+    pData[playerid][player_pos_y]      = DEFAULT_POS_Y;
+    pData[playerid][player_pos_z]      = DEFAULT_POS_Z;
+    pData[playerid][player_pos_angle]  = DEFAULT_POS_A;
+    // mysql_format(dbHandle, szQuery, sizeof (szQuery), "INSERT INTO `players` (`name`, `hash`) VALUES ('%e', '%s')", pData[playerid][pName], hash);
+
+    mysql_format(dbHandle, szQuery, sizeof(szQuery), "INSERT INTO `players` (`name`, `hash`, `skin`, `score`, `x_pos`, `y_pos`, `z_pos`, `angle_pos`) VALUES ('%e', '%e', '%i', '0', '%f', '%f', '%f', '%f')", pData[playerid][pName], hash, pData[playerid][pSkin], pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z], pData[playerid][player_pos_angle]);
     mysql_tquery(dbHandle, szQuery, "OnPlayerFinishRegistration", "i", playerid);
 
     return 1;
@@ -197,31 +211,51 @@ RegisterAccountForPlayer(playerid, const hash [])
 public OnPlayerFinishRegistration(playerid)
 {
     // Retrieves the ID generated for an AUTO_INCREMENT column by the sent query
+    new szQuery[256];
     pData[playerid][pAccountID] = cache_insert_id();
 
-    ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, "Registration", "Account successfully registered, and you have been automatically logged in.", "Close", "");
+    // default values
+    // pData[playerid][pSkin]             = DEFAULT_SKIN;
+    // pData[playerid][player_pos_x]      = DEFAULT_POS_X;
+    // pData[playerid][player_pos_y]      = DEFAULT_POS_Y;
+    // pData[playerid][player_pos_z]      = DEFAULT_POS_Z;
+    // pData[playerid][player_pos_angle]  = DEFAULT_POS_A;
 
-    pData[playerid][pLoggedIn] = true;
+    // mysql_format(dbHandle, regQuery, sizeof(regQuery), "INSERT INTO `players` (`ID`, `name`, `skin`, `score`, `x_pos`, `y_pos`, `z_pos`, `angle_pos`) VALUES ('%i', '%e', '%i', '0', '%f', '%f', '%f', '%f')", pData[playerid][pAccountID], pData[playerid][pName], pData[playerid][pSkin], pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z], pData[playerid][player_pos_angle]);
+    // mysql_tquery(dbHandle, regQuery);
 
-    // It's the player's first spawn, so we're going to be using the default spawns we have defined.
-    pData[playerid][player_pos_x]      = DEFAULT_POS_X;
-    pData[playerid][player_pos_y]      = DEFAULT_POS_Y;
-    pData[playerid][player_pos_z]      = DEFAULT_POS_Z;
-    pData[playerid][player_pos_angle]  = DEFAULT_POS_A;
+    // // Default skin
+    // pData[playerid][pSkin]             = DEFAULT_SKIN;
+    // SavepData(playerid);
 
-    // Default skin
-    pData[playerid][pSkin]             = DEFAULT_SKIN;
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "SELECT * FROM `players` WHERE `Name` = '%e' LIMIT 1", pData[playerid][pName]);
+    mysql_tquery(dbHandle, szQuery, "OnPlayerAccountCheck", "i", playerid);
+
+    // ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, "Registration", "Account successfully registered, and you have been automatically logged in.", "Close", "");
+
+    // ShowPlayerDialog(playerid, DIALOG_LOGIN, DIALOG_STYLE_PASSWORD, "Log in", "This account (%s) is registered. Please enter your password in the field below:", "Login", "Cancel", pData[playerid][pName]);
+
+    // pData[playerid][pLoggedIn] = true;
+
+    // // It's the player's first spawn, so we're going to be using the default spawns we have defined.
+    // pData[playerid][player_pos_x]      = DEFAULT_POS_X;
+    // pData[playerid][player_pos_y]      = DEFAULT_POS_Y;
+    // pData[playerid][player_pos_z]      = DEFAULT_POS_Z;
+    // pData[playerid][player_pos_angle]  = DEFAULT_POS_A;
+
+    // // Default skin
+    // pData[playerid][pSkin]             = DEFAULT_SKIN;
 
 
-    // We initially set this to true in OnPlayerConnect to enable spectating mode. 
-    // Now that the player has registered, set it to false so they can control their character.
-    TogglePlayerSpectating(playerid, false);
+    // // We initially set this to true in OnPlayerConnect to enable spectating mode. 
+    // // Now that the player has registered, set it to false so they can control their character.
+    // TogglePlayerSpectating(playerid, false);
 
-    // Set the player spawn info such as (Skin, pos, etc...)
-    SetSpawnInfo(playerid, NO_TEAM, pData[playerid][pSkin], pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z], pData[playerid][player_pos_angle], WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
+    // // Set the player spawn info such as (Skin, pos, etc...)
+    // SetSpawnInfo(playerid, NO_TEAM, pData[playerid][pSkin], pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z], pData[playerid][player_pos_angle], WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
 
-    // Spawn the player
-    SpawnPlayer(playerid);
+    // // Spawn the player
+    // SpawnPlayer(playerid);
 
     return 1;
 }
@@ -250,66 +284,30 @@ public OnPlayerVerifyPassword(playerid, bool:success)
     {
         // Password is valid.
         new szQuery[256];
-        mysql_format(dbHandle, szQuery, sizeof (szQuery), "SELECT * FROM `players` WHERE `Name` = '%e' LIMIT 1", pData[playerid][pName]);
-        mysql_tquery(dbHandle, szQuery, "OnPlayerAccountLoad", "i", playerid);
+        mysql_format(dbHandle, szQuery, sizeof (szQuery), "SELECT * FROM `players` WHERE `name` = '%e' LIMIT 1", pData[playerid][pName]);
+        mysql_tquery(dbHandle, szQuery, "LoadPlayerData", "i", playerid);
 
     }
 
     return 1;
 }
 
-public OnPlayerAccountLoad(playerid)
-{
-    // Reset the bad login attempts
-    pData[playerid][pBadLogins] = 0;
 
-    // Player is logged in now.
-    pData[playerid][pLoggedIn] = true;
-
-    cache_get_value_name_int(0, "ID", pData[playerid][pAccountID]);
-
-    cache_get_value_name_int(0, "Skin", pData[playerid][pSkin]);
-    cache_get_value_name_int(0, "Score", pData[playerid][pScore]);
-    cache_get_value_name_int(0, "Kills", pData[playerid][pKills]);
-    cache_get_value_name_int(0, "Deaths", pData[playerid][pDeaths]);
-
-    cache_get_value_name_float(0, "x_pos", pData[playerid][player_pos_x]);
-    cache_get_value_name_float(0, "y_pos", pData[playerid][player_pos_y]);
-    cache_get_value_name_float(0, "z_pos", pData[playerid][player_pos_z]);
-    cache_get_value_name_float(0, "angle_pos", pData[playerid][player_pos_angle]);
-    cache_get_value_name_float(0, "admin", pData[playerid][pAdmin]);
-
-    ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, "Login", "You have been successfully logged in.", "Close", "");
-
-    // We initially set this to true in OnPlayerConnect to enable spectating mode. 
-    // Now that the player has logged in, set it to false so they can control their character.
-    TogglePlayerSpectating(playerid, false);
-
-    // Player score
-    SetPlayerScore(playerid, pData[playerid][pScore]);
-
-    // Set the player spawn info.
-    SetSpawnInfo(playerid, NO_TEAM, pData[playerid][pSkin], pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z], pData[playerid][player_pos_angle], WEAPON_FIST, 0, WEAPON_FIST, 0, WEAPON_FIST, 0);
-    
-    // Spawn the player.
-    SpawnPlayer(playerid);
-
-    return 1;
-}
 
 public OnPlayerSpawn(playerid)
 {
-    // Set the player position to the last saved one
     SetPlayerPos(playerid, pData[playerid][player_pos_x], pData[playerid][player_pos_y], pData[playerid][player_pos_z]);
     SetPlayerFacingAngle(playerid, pData[playerid][player_pos_angle]);
+    pData[playerid][pSpawned] = true;
 
-    // Player skin
     SetPlayerSkin(playerid, pData[playerid][pSkin]);
 
+    GivePlayerMoney(playerid, pData[playerid][pMoney]);
+
     CreatePlayerTextdraw(playerid);
-
-    SetTimerEx("UpdateTimeTextdraw", 1000, true, "i", playerid);
-
+    ShowHBE(playerid, true);
+    // SetTimerEx("SetHungerBar", 1000, true, "ii", playerid, pData[playerid][pHunger] - 2.0);
+    // SetPlayerProgressBarValue(playerid, HungerBar[playerid], 21.0);
 
 
     return 1;
@@ -318,14 +316,14 @@ public OnPlayerSpawn(playerid)
 public OnPlayerDeath(playerid, killerid, WEAPON:reason)
 {
     // Increase deaths count.
-    pData[playerid][pDeaths] ++;
+    // pData[playerid][pDeaths] ++;
 
     // We check if the killerid is a valid playerid, otherwise OnPlayerDeath will throw array index out of bounds.
-    if(killerid != INVALID_PLAYER_ID)
-    {
-        // Increase the player's kills
-        pData[killerid][pKills] ++;
-    }
+    // if(killerid != INVALID_PLAYER_ID)
+    // {
+    //     // Increase the player's kills
+    //     pData[killerid][pKills] ++;
+    // }
 
     return 1;
 }

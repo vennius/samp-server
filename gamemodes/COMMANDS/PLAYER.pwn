@@ -13,8 +13,9 @@ CMD:help(playerid, params[])
 CMD:stats(playerid, params[]){
     new caption[50], info[200];
     format(caption, sizeof(caption), "%s's Stats", pData[playerid][pName]);
-        format(info, sizeof(info), RED_D"In Character"WHITE"\n");
-        format(info, sizeof(info), "%sName: [%s] | Money: [%s]""\n", info, pData[playerid][pName], 1000);
+
+    format(info, sizeof(info), RED"In Character"WHITE"\n");
+    format(info, sizeof(info), "%sName: [%s] | Money: ["GREEN"$%i"WHITE"]""\n", info, pData[playerid][pName], pData[playerid][pMoney]);
     
     ShowPlayerDialog(playerid, DIALOG_STATS, DIALOG_STYLE_MSGBOX, caption, info, "Close", "");
     return 1;

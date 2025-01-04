@@ -92,7 +92,7 @@
   },
   "password": "",
   "pawn": {
-    "legacy_plugins": ["mysql", "samp_bcrypt"],
+    "legacy_plugins": ["mysql", "samp_bcrypt", "crashdetect"],
     "main_scripts": ["main"],
     "side_scripts": []
   },

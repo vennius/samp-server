@@ -126,3 +126,116 @@
 [02/01/2025 15:47:25] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
 [02/01/2025 15:47:27] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
 [02/01/2025 15:48:37] [WARNING] mysql_connect: no password specified
+[02/01/2025 16:38:56] [WARNING] mysql_connect: no password specified
+[02/01/2025 16:46:59] [WARNING] mysql_connect: no password specified
+[02/01/2025 16:48:22] [WARNING] mysql_connect: no password specified
+[02/01/2025 16:56:21] [WARNING] mysql_connect: no password specified
+[02/01/2025 16:58:43] [WARNING] mysql_connect: no password specified
+[02/01/2025 17:03:29] [WARNING] mysql_connect: no password specified
+[02/01/2025 17:07:08] [WARNING] mysql_connect: no password specified
+[02/01/2025 19:38:26] [WARNING] mysql_connect: no password specified
+[02/01/2025 19:38:28] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 19:38:30] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[02/01/2025 19:38:52] [WARNING] mysql_connect: no password specified
+[02/01/2025 19:55:10] [WARNING] mysql_connect: no password specified
+[02/01/2025 20:04:23] [WARNING] mysql_connect: no password specified
+[02/01/2025 20:06:13] [WARNING] mysql_connect: no password specified
+[02/01/2025 20:09:49] [WARNING] mysql_connect: no password specified
+[02/01/2025 20:11:21] [WARNING] mysql_connect: no password specified
+[02/01/2025 20:18:33] [WARNING] mysql_connect: no password specified
+[02/01/2025 20:24:57] [ERROR] error #1054 while executing query "UPDATE `players` SET `Skin` = 188,`Score` = 0,`Kills` = 0,`Deaths` = 0,`x_pos` = 1707.489990,`y_pos` = -2260.449951,`z_pos` = 13.519860,`angle_pos` = 263.786011,`admin` = 0,`money` = 6033 WHERE `ID` = 4": Unknown column 'Kills' in 'field list'
+[02/01/2025 20:25:03] [WARNING] mysql_connect: no password specified
+[02/01/2025 20:26:57] [ERROR] cache_get_value_name: field 'Hash' not found
+[02/01/2025 20:28:18] [ERROR] cache_get_value_name: field 'Hash' not found
+[02/01/2025 20:31:17] [WARNING] mysql_connect: no password specified
+[02/01/2025 21:11:03] [WARNING] mysql_connect: no password specified
+[02/01/2025 21:16:24] [WARNING] mysql_connect: no password specified
+[03/01/2025 13:18:48] [WARNING] mysql_connect: no password specified
+[03/01/2025 15:52:52] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:10:22] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:13:20] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:13:28] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:13:33] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:13:43] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:13:47] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:13:50] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:13:55] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:27:33] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:33:47] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:38:03] [WARNING] mysql_connect: no password specified
+[03/01/2025 16:44:22] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:01:28] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:01:30] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[03/01/2025 19:01:33] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[03/01/2025 19:01:35] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[03/01/2025 19:01:38] [ERROR] CConnection::CConnection - establishing connection to MySQL database failed: #2002 'Can't connect to MySQL server on '127.0.0.1' (10061)'
+[03/01/2025 19:02:23] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:08:28] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:14:12] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:17:04] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:18:56] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:21:38] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:24:19] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:26:19] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:27:40] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:29:02] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:47:42] [WARNING] mysql_connect: no password specified
+[03/01/2025 19:51:01] [WARNING] mysql_connect: no password specified
+[03/01/2025 20:04:26] [WARNING] mysql_connect: no password specified
+[03/01/2025 20:12:53] [WARNING] mysql_connect: no password specified
+[03/01/2025 20:22:22] [WARNING] mysql_connect: no password specified
+[03/01/2025 20:30:31] [WARNING] mysql_connect: no password specified
+[03/01/2025 20:30:46] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:30:46] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:30:46] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:30:46] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:30:46] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:30:46] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:33:37] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:33:37] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:33:37] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:33:37] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:33:37] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:33:37] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:38:13] [WARNING] mysql_connect: no password specified
+[03/01/2025 20:38:32] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:38:32] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:38:32] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:38:32] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:38:32] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:38:32] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:45:25] [WARNING] mysql_connect: no password specified
+[03/01/2025 20:45:45] [ERROR] error #1062 while executing query "INSERT INTO `players` (`ID`, `name`, `skin`, `score`, `x_pos`, `y_pos`, `z_pos`, `angle_pos`) VALUES ('14', 'Vennius_Irving', '188', '0', '1643.719971', '-2245.290039', '13.487300', '187.199997')": Duplicate entry '14' for key 'PRIMARY'
+[03/01/2025 20:45:53] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:45:53] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:45:53] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:45:53] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:45:53] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:45:53] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:53:59] [ERROR] error #1062 while executing query "INSERT INTO `players` (`ID`, `name`, `skin`, `score`, `x_pos`, `y_pos`, `z_pos`, `angle_pos`) VALUES ('15', 'Vennius_Irving', '188', '0', '1643.719971', '-2245.290039', '13.487300', '187.199997')": Duplicate entry '15' for key 'PRIMARY'
+[03/01/2025 20:54:03] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:54:03] [ERROR] cache_get_value_name_int: value 'NULL' is not a number
+[03/01/2025 20:54:03] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:54:03] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:54:03] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:54:03] [ERROR] cache_get_value_name_float: value 'NULL' is not a number
+[03/01/2025 20:58:25] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:00:41] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:07:31] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:13:29] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:15:36] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:18:54] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:25:31] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:30:24] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:32:33] [WARNING] mysql_connect: no password specified
+[03/01/2025 21:35:16] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:13:51] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:14:20] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:14:31] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:24:02] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:26:07] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:29:44] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:35:35] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:37:41] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:38:54] [WARNING] mysql_connect: no password specified
+[04/01/2025 11:39:59] [WARNING] mysql_connect: no password specified

@@ -1,0 +1,56 @@
+{
+	"user": "Y-Less",
+	"repo": "sscanf",
+	"contributors": [
+		"Cheaterman",
+		"DEntisT",
+		"Emmet_",
+		"karimcambridge",
+		"kalacsparty",
+		"Kirima",
+		"leHeix",
+		"maddinat0r",
+		"Southclaws",
+		"Y_Less",
+		"ziggi"
+	],
+	"dependencies": [
+		"Southclaws/progress2:v2.3.0"
+	],
+	"runtime": {
+		"version": "0.3.7",
+		"mode": "server",
+		"plugins": [
+			"Y-Less/sscanf"
+		],
+		"rcon_password": "password",
+		"port": 8192,
+		"hostname": "SA-MP Server",
+		"maxplayers": 50,
+		"language": ""
+	},
+	"resources": [
+		{
+			"name": "^sscanf-(.+)-linux.tar.gz$",
+			"platform": "linux",
+			"archive": true,
+			"includes": [
+				"pawno/include"
+			],
+			"plugins": [
+				"plugins/sscanf.so"
+			]
+		},
+		{
+			"name": "^sscanf-(.*)-win32.zip$",
+			"platform": "windows",
+			"archive": true,
+			"includes": [
+				"pawno/include"
+			],
+			"plugins": [
+				"plugins/sscanf.dll"
+			]
+		}
+	]
+}

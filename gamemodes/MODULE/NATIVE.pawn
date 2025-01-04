@@ -1,15 +1,3 @@
-forward UpdateTimeTextdraw(playerid);
-public UpdateTimeTextdraw(playerid){
-  new hours,
-    minutes,
-    timestamp,
-    seconds;
-  timestamp = gettime(hours, minutes, seconds);
-  new time[100];
-  format(time, sizeof(time), "Jam Sekarang: %02d:%02d", hours, minutes);
-  TextDrawSetString(TD_Time[playerid][0], time);
-  return 1;
-}
 
 stock SavepData(playerid)
 {
@@ -28,15 +16,16 @@ stock SavepData(playerid)
     // Let's save the player data.
     new szQuery[4028];
     mysql_format(dbHandle, szQuery, sizeof (szQuery), "UPDATE `players` SET ");
-    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`Skin` = %i,", szQuery, pData[playerid][pSkin]);
-    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`Score` = %i,", szQuery, pData[playerid][pScore]);
-    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`Kills` = %i,", szQuery, pData[playerid][pKills]);
-    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`Deaths` = %i,", szQuery, pData[playerid][pDeaths]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`skin` = %i,", szQuery, pData[playerid][pSkin]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`score` = %i,", szQuery, pData[playerid][pScore]);
     mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`x_pos` = %f,", szQuery, pData[playerid][player_pos_x]);
     mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`y_pos` = %f,", szQuery, pData[playerid][player_pos_y]);
     mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`z_pos` = %f,", szQuery, pData[playerid][player_pos_z]);
     mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`angle_pos` = %f,", szQuery, pData[playerid][player_pos_angle]);
-    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`admin` = %i ", szQuery, pData[playerid][pAdmin]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`admin` = %i,", szQuery, pData[playerid][pAdmin]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`money` = %i,", szQuery, pData[playerid][pMoney]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`hunger` = %i,", szQuery, pData[playerid][pHunger]);
+    mysql_format(dbHandle, szQuery, sizeof (szQuery), "%s`thirst` = %i ", szQuery, pData[playerid][pThirst]);
 
     mysql_format(dbHandle, szQuery, sizeof (szQuery), "%sWHERE `ID` = %i", szQuery, pData[playerid][pAccountID]);
     
@@ -55,3 +44,91 @@ DelayedKick(playerid, const reason[])
 
     return 1;
 }
+
+stock FormatMoney(cCash)
+{
+    new szStr[18], dollar[40];
+    format(szStr, sizeof(szStr), "%i", cCash);
+
+    for(new iLen = strlen(szStr) - 3; iLen > 0; iLen -= 3)
+    {
+        strins(szStr, ",", iLen);
+    }
+	format(dollar, sizeof(dollar), "$%s", szStr);
+    return dollar;
+}
+
+stock SendNearbyMessage(playerid, Float:radius, color, const str[], {Float,_}:...)
+{
+    static
+        args,
+        start,
+        end,
+        string[144]
+    ;
+    #emit LOAD.S.pri 8
+    #emit STOR.pri args
+
+    if(args > 16)
+    {
+        #emit ADDR.pri str
+        #emit STOR.pri start
+
+        for (end = start + (args - 16); end > start; end -= 4)
+        {
+            #emit LREF.pri end
+            #emit PUSH.pri
+        }
+        #emit PUSH.S str
+        #emit PUSH.C 144
+        #emit PUSH.C string
+
+        #emit LOAD.S.pri 8
+        #emit CONST.alt 4
+        #emit SUB
+        #emit PUSH.pri
+
+        #emit SYSREQ.C format
+        #emit LCTRL 5
+        #emit SCTRL 4
+
+        foreach (new i : Player)
+        {
+            if(NearPlayer(i, playerid, radius)) {
+                SendClientMessage(i, color, string);
+            }
+        }
+        return 1;
+    }
+    foreach (new i : Player)
+    {
+        if(NearPlayer(i, playerid, radius)) {
+            SendClientMessage(i, color, str);
+        }
+    }
+    return 1;
+}
+
+stock GivePlayerMoneyEx(playerid, amount){
+  if(amount < 0) return 0;
+  pData[playerid][pMoney] += amount;
+  return GivePlayerMoney(playerid, amount);
+}
+
+stock GiveHungry(playerid, Float:hunger)
+{
+    if(hunger < 0.0) hunger = 0.0;
+    if(hunger > 100.0) hunger = 100.0;
+    pData[playerid][pHunger] += hunger;
+    return 1;
+}
+
+stock SetHungerBar(playerid, hunger)
+{
+    if(hunger < 0) hunger = 0;
+    if(hunger > 100) hunger = 100;
+    pData[playerid][pHunger] = hunger;
+    SetPlayerProgressBarValue(playerid, HungerBar[playerid], pData[playerid][pHunger]);
+    return 1;
+}
+
